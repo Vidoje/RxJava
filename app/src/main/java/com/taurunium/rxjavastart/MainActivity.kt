@@ -31,15 +31,29 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onComplete: ")
 //            })
 
-        createOperator().subscribe(
+//        createOperator().subscribe(
+//            {
+//                Log.d(TAG, "onNext: "+it)
+//            },
+//            {
+//                Log.d(TAG, "onError: "+it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            })
+
+        filterOperator().filter {
+            it.age > 23
+        }.subscribe(
             {
-                Log.d(TAG, "onNext: "+it)
+                Log.d(TAG, "onNext: " + it)
             },
             {
-                Log.d(TAG, "onError: "+it)
+                Log.d(TAG, "onError: " + it)
             },
             {
                 Log.d(TAG, "onComplete: ")
-            })
+            }
+        )
     }
 }

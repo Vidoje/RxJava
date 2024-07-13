@@ -2,6 +2,7 @@ package com.taurunium.rxjavastart
 
 import android.util.Log
 import com.taurunium.rxjavastart.MainActivity.Companion.TAG
+import com.taurunium.rxjavastart.data.User
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
@@ -13,6 +14,16 @@ import java.util.concurrent.TimeUnit
 val lista = mutableListOf<Int>(1, 2, 3, 4, 5)
 val arrayOf = arrayOf(1, 2, 3, 4, 5)
 val arrayOf2 = arrayOf(1, 2, 3, 4, 5)
+val mUserList = mutableListOf<User>(
+    User(1, "User1",15),
+    User(2, "User2",18),
+    User(3, "User3",23),
+    User(4, "User4",33),
+    User(5, "User5",44),
+    User(6, "User6",54),
+)
+
+
 
 fun justOperator() {
     val observable = Observable.just(lista)
@@ -119,4 +130,8 @@ fun createOperator(): Observable<Int> {
             it.onError(e)
         }
     })
+}
+
+fun filterOperator():Observable<User>{
+    return Observable.fromIterable(mUserList)
 }

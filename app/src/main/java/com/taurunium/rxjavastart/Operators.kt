@@ -3,6 +3,7 @@ package com.taurunium.rxjavastart
 import android.util.Log
 import com.taurunium.rxjavastart.MainActivity.Companion.TAG
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.Arrays
@@ -37,11 +38,10 @@ fun justOperator() {
     observable.subscribe(observer)
 }
 
-
-fun fromOperator(){
+fun fromOperator() {
     val observable = Observable.fromArray(arrayOf)
 
-    val observer = object:Observer<Array<Int>>{
+    val observer = object : Observer<Array<Int>> {
         override fun onSubscribe(d: Disposable) {
             Log.d(TAG, "onSubscribe: ")
         }
@@ -62,11 +62,10 @@ fun fromOperator(){
     observable.subscribe(observer)
 }
 
-
-fun fromIterable(){
+fun fromIterable() {
     val observable = Observable.fromIterable(lista)
 
-    val observer = object: Observer<Int>{
+    val observer = object : Observer<Int> {
         override fun onSubscribe(d: Disposable) {
             Log.d(TAG, "onSubscribe: ")
         }
@@ -80,34 +79,44 @@ fun fromIterable(){
         }
 
         override fun onNext(t: Int) {
-            Log.d(TAG, "onNext: "+t)
+            Log.d(TAG, "onNext: " + t)
         }
     }
 
     observable.subscribe(observer)
 }
 
-
-fun rangeOperator(): Observable<Int>{
+fun rangeOperator(): Observable<Int> {
     return Observable.range(1, 5)
 }
 
-
-fun repeatOperator(): Observable<Int>{
+fun repeatOperator(): Observable<Int> {
     return Observable.range(1, 5).repeat(3)
 }
 
-
-fun intervalOperator(): Observable<Long>{
-    return Observable.interval(3,2, TimeUnit.SECONDS).takeWhile { value ->
+fun intervalOperator(): Observable<Long> {
+    return Observable.interval(3, 2, TimeUnit.SECONDS).takeWhile { value ->
         value <= 10
     }
 }
 
-fun getLocation(){
+fun getLocation() {
     Log.d(TAG, "currentLocation: 102.22 99.45")
 }
 
-fun timerOperator(): Observable<Long>{
+fun timerOperator(): Observable<Long> {
     return Observable.timer(5, TimeUnit.SECONDS)
+}
+
+fun createOperator(): Observable<Int> {
+    return Observable.create(ObservableOnSubscribe<Int> {
+        try {
+            for (i in lista) {
+                it.onNext(i*5)
+            }
+            it.onComplete()
+        } catch (e: Exception) {
+            it.onError(e)
+        }
+    })
 }

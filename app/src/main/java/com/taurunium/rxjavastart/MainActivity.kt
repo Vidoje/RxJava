@@ -19,10 +19,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        timerOperator().subscribe(
+//        timerOperator().subscribe(
+//            {
+//                Log.d(TAG, "onNext: "+it)
+//                getLocation()
+//            },
+//            {
+//                Log.d(TAG, "onError: "+it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            })
+
+        createOperator().subscribe(
             {
                 Log.d(TAG, "onNext: "+it)
-                getLocation()
             },
             {
                 Log.d(TAG, "onError: "+it)

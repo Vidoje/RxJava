@@ -135,3 +135,7 @@ fun createOperator(): Observable<Int> {
 fun filterOperator():Observable<User>{
     return Observable.fromIterable(mUserList)
 }
+
+fun lastOperator():Observable<User>{
+    return Observable.fromIterable(mUserList)
+}

@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.taurunium.rxjavastart.data.User
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
@@ -42,17 +43,26 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onComplete: ")
 //            })
 
-        filterOperator().filter {
-            it.age > 23
-        }.subscribe(
+//        filterOperator().filter {
+//            it.age > 23
+//        }.subscribe(
+//            {
+//                Log.d(TAG, "onNext: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onError: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            }
+//        )
+
+        lastOperator().last(User(111, "default",11)).subscribe(
             {
                 Log.d(TAG, "onNext: " + it)
             },
             {
                 Log.d(TAG, "onError: " + it)
-            },
-            {
-                Log.d(TAG, "onComplete: ")
             }
         )
     }

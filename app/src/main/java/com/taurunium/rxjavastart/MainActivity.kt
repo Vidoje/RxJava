@@ -90,9 +90,23 @@ class MainActivity : AppCompatActivity() {
 //            {
 //                Log.d(TAG, "onComplete: ")
 //            })
+//
+//        mapOperator().map {
+//            UserProfile(it.id, it.name, it.age, "")
+//        }.subscribe(
+//            {
+//                Log.d(TAG, "onNext: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onError: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            })
 
-        mapOperator().map {
-            UserProfile(it.id, it.name, it.age, "")
+
+        flatMapOperator().flatMap {
+            getUserProfile(it.id)
         }.subscribe(
             {
                 Log.d(TAG, "onNext: " + it)

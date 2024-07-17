@@ -141,8 +141,10 @@ class MainActivity : AppCompatActivity() {
 //            Log.d(TAG, "lista  "+it)
 //        })
 
-        concatOperator().subscribe({
-            Log.d(TAG, "lista  "+it)
-        })
+//        concatOperator().subscribe({
+//            Log.d(TAG, "lista  "+it)
+//        })
+
+        createObservable().subscribe(observer())
     }
 }

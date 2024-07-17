@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onComplete: ")
 //            })
 
-        skipOperator().skip(3).subscribe(
+        bufferOperator().buffer(2).subscribe(
             {
                 Log.d(TAG, "onNext: " + it)
             },

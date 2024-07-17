@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.taurunium.rxjavastart.data.User
+import com.taurunium.rxjavastart.data.UserProfile
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
@@ -79,7 +80,20 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onComplete: ")
 //            })
 
-        bufferOperator().buffer(2).subscribe(
+//        bufferOperator().buffer(2).subscribe(
+//            {
+//                Log.d(TAG, "onNext: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onError: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            })
+
+        mapOperator().map {
+            UserProfile(it.id, it.name, it.age, "")
+        }.subscribe(
             {
                 Log.d(TAG, "onNext: " + it)
             },

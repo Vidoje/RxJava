@@ -39,6 +39,15 @@ val mUserProfileList = mutableListOf<UserProfile>(
     UserProfile(9, "User9", 22, ""),
 )
 
+val mUserListGroupBy = mutableListOf<User>(
+    User(1, "User1", 33),
+    User(2, "User2", 18),
+    User(3, "User3", 18),
+    User(4, "User4", 33),
+    User(5, "User5", 33),
+
+)
+
 
 fun justOperator() {
     val observable = Observable.just(lista)
@@ -180,4 +189,22 @@ fun getUserProfile(id: Long): Observable<UserProfile> {
         .filter {
             it.id == id
         }
+}
+
+
+fun groupByOperator(): Observable<User> {
+    return Observable.fromIterable(mUserListGroupBy)
+}
+
+
+fun getUserProfiles(): Observable<UserProfile> {
+    return Observable.fromIterable(mUserProfileList)
+}
+
+fun getUsers(): Observable<User>{
+    return Observable.fromIterable(mUserList)
+}
+
+fun mergeOperator(): Observable<Any>{
+    return Observable.merge(getUsers(), getUserProfiles())
 }

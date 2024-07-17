@@ -105,17 +105,40 @@ class MainActivity : AppCompatActivity() {
 //            })
 
 
-        flatMapOperator().flatMap {
-            getUserProfile(it.id)
-        }.subscribe(
-            {
-                Log.d(TAG, "onNext: " + it)
-            },
-            {
-                Log.d(TAG, "onError: " + it)
-            },
-            {
-                Log.d(TAG, "onComplete: ")
-            })
+//        flatMapOperator().flatMap {
+//            getUserProfile(it.id)
+//        }.subscribe(
+//            {
+//                Log.d(TAG, "onNext: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onError: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            })
+
+//        groupByOperator().groupBy {
+//            it.age
+//        }.subscribe(
+//            {
+//                group->
+//                    group.subscribe({
+//                        Log.d(TAG, "${group.key}: value ${it} ")
+//                    },
+//                        {
+//
+//                        })
+//            },
+//            {
+//                Log.d(TAG, "onError: " + it)
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//            })
+
+        mergeOperator().subscribe({
+            Log.d(TAG, "lista  "+it)
+        })
     }
 }

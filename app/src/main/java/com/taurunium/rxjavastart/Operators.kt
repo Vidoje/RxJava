@@ -208,3 +208,15 @@ fun getUsers(): Observable<User>{
 fun mergeOperator(): Observable<Any>{
     return Observable.merge(getUsers(), getUserProfiles())
 }
+
+fun getFrom1To10(): Observable<Int>{
+    return Observable.range(1, 10)
+}
+
+fun getFrom11To20(): Observable<Int>{
+    return Observable.range(11,20)
+}
+
+fun concatOperator(): Observable<Int>{
+    return Observable.concat(getFrom1To10(), getFrom11To20())
+}

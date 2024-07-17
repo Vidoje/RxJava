@@ -137,7 +137,11 @@ class MainActivity : AppCompatActivity() {
 //                Log.d(TAG, "onComplete: ")
 //            })
 
-        mergeOperator().subscribe({
+//        mergeOperator().subscribe({
+//            Log.d(TAG, "lista  "+it)
+//        })
+
+        concatOperator().subscribe({
             Log.d(TAG, "lista  "+it)
         })
     }

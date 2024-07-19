@@ -3,6 +3,9 @@ package com.taurunium.rxjavastart
 import android.util.Log
 import com.taurunium.rxjavastart.MainActivity.Companion.TAG
 import com.taurunium.rxjavastart.data.User
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.CompletableObserver
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.MaybeObserver
 import io.reactivex.rxjava3.core.Observable
@@ -110,10 +113,50 @@ fun observerMaybe(): MaybeObserver<List<User>> {
         }
 
         override fun onSuccess(t: List<User>) {
-            t?.forEach{
-                Log.d(TAG, "onSuccess: "+it)
+            t?.forEach {
+                Log.d(TAG, "onSuccess: " + it)
             }
         }
     }
 }
 
+
+fun createCompletable(): Completable {
+    return Completable.create { emmiter ->
+        try {
+            if (!emmiter.isDisposed) {
+                getMyLocation()
+                emmiter.onComplete()
+            }
+        } catch (e: Exception) {
+            emmiter.onError(e)
+        }
+
+    }
+}
+
+fun observerCompletable(): CompletableObserver {
+    return object: CompletableObserver{
+        override fun onSubscribe(d: Disposable) {
+            Log.d(TAG, "onSubscribe: ")
+        }
+
+        override fun onComplete() {
+            Log.d(TAG, "onComplete: ")
+
+        }
+
+        override fun onError(e: Throwable) {
+            Log.d(TAG, "onError: ")
+
+        }
+    }
+}
+
+fun createFlowableObservable(): Flowable<Int>{
+    return Flowable.range(1,100)
+}
+
+fun getMyLocation() {
+    Log.d(TAG, "currentLocation: 102.22 99.45")
+}

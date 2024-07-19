@@ -149,6 +149,20 @@ class MainActivity : AppCompatActivity() {
 
         //createSingleObservable().subscribe(observerSingle())
 
-        createMaybeObservable().subscribe(observerMaybe())
+        //createMaybeObservable().subscribe(observerMaybe())
+
+//        createCompletable().subscribe(observerCompletable())
+
+        createFlowableObservable().subscribe({
+            Log.d(TAG, "onNext: " + it)
+        },
+            {
+                Log.d(TAG, "onError: " + it)
+
+            },
+            {
+                Log.d(TAG, "onComplete: ")
+
+            })
     }
 }

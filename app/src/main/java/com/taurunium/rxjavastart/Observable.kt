@@ -14,6 +14,8 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
 
+lateinit var disposable: Disposable
+
 val myUserList = mutableListOf<User>(
     User(1, "User1", 15),
     User(2, "User2", 18),
@@ -30,7 +32,7 @@ fun createObservable(): Observable<Int> {
     return Observable.create { emmiter ->
         try {
             if (!emmiter.isDisposed) {
-                for (i in 0..100) {
+                for (i in 0..100000) {
                     emmiter.onNext(i)
                 }
                 emmiter.onComplete()
@@ -46,6 +48,9 @@ fun createObservable(): Observable<Int> {
 fun observer(): Observer<Int> {
     return object : Observer<Int> {
         override fun onSubscribe(d: Disposable) {
+            d?.let {
+                disposable = d
+            }
             Log.d(TAG, "onSubscribe: ")
         }
 
@@ -58,7 +63,7 @@ fun observer(): Observer<Int> {
         }
 
         override fun onNext(t: Int) {
-            Log.d(TAG, "onNext: ")
+            Log.d(TAG, "onNext: ${t}")
         }
 
     }

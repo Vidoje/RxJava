@@ -10,7 +10,9 @@ import com.taurunium.rxjavastart.data.User
 import com.taurunium.rxjavastart.data.UserProfile
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -153,16 +155,27 @@ class MainActivity : AppCompatActivity() {
 
 //        createCompletable().subscribe(observerCompletable())
 
-        createFlowableObservable().subscribe({
-            Log.d(TAG, "onNext: " + it)
-        },
-            {
-                Log.d(TAG, "onError: " + it)
+//        createFlowableObservable().subscribe({
+//            Log.d(TAG, "onNext: " + it)
+//        },
+//            {
+//                Log.d(TAG, "onError: " + it)
+//
+//            },
+//            {
+//                Log.d(TAG, "onComplete: ")
+//
+//            })
 
-            },
-            {
-                Log.d(TAG, "onComplete: ")
+        createObservable()
+            .subscribeOn(Schedulers.io())
+            .subscribe(observer())
+    }
 
-            })
+
+    override fun onDestroy() {
+        Log.d(TAG, "onDestroy: ")
+        disposable.dispose()
+        super.onDestroy()
     }
 }

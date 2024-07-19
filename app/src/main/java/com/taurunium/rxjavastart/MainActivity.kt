@@ -145,6 +145,10 @@ class MainActivity : AppCompatActivity() {
 //            Log.d(TAG, "lista  "+it)
 //        })
 
-        createObservable().subscribe(observer())
+//        createObservable().subscribe(observer())
+
+        //createSingleObservable().subscribe(observerSingle())
+
+        createMaybeObservable().subscribe(observerMaybe())
     }
 }
